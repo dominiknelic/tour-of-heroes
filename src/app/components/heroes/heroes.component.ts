@@ -5,7 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Hero } from '../hero';
+import { Hero } from '../../hero';
+import { HEROES } from '../../mock-heroes';
 
 @Component({
   selector: 'app-heroes',
@@ -15,6 +16,8 @@ import { Hero } from '../hero';
 })
 export class HeroesComponent {
   heroForm: FormGroup;
+  heroes = HEROES;
+  selectedHero?: Hero;
 
   constructor(private readonly fb: FormBuilder) {
     this.heroForm = new FormGroup({
@@ -25,5 +28,9 @@ export class HeroesComponent {
 
   get name() {
     return this.heroForm.get('name');
+  }
+
+  onSelect(hero: Hero) {
+    this.selectedHero = hero;
   }
 }
