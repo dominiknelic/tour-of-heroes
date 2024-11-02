@@ -1,0 +1,11 @@
+<h2>{{ heroForm.get("name")?.value | uppercase }} Details</h2>
+<div><span>id: </span>{{ heroForm.get("id")?.value }}</div>
+<div [formGroup]="heroForm">
+  <label for="name">Hero name: </label>
+  <input id="name" formControlName="name" placeholder="name" />
+
+  @if(name?.invalid && (name?.dirty || name?.touched) &&
+  name?.errors?.['required']) {
+  <p>Name is required.</p>
+  }
+</div>
