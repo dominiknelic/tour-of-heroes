@@ -15,20 +15,20 @@ import { HEROES } from '../../mock-heroes';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent {
-  heroForm: FormGroup;
+  // heroForm: FormGroup;
   heroes = HEROES;
   selectedHero?: Hero;
 
   constructor(private readonly fb: FormBuilder) {
-    this.heroForm = new FormGroup({
-      id: new FormControl<number>(1),
-      name: new FormControl<string>('Windstorm', [Validators.required]),
-    });
+    // this.heroForm = new FormGroup({
+    //   id: new FormControl<number>(1),
+    //   name: new FormControl<string>('Windstorm', [Validators.required]),
+    // });
   }
 
-  get name() {
-    return this.heroForm.get('name');
-  }
+  // get name() {
+  //   return this.heroForm.get('name');
+  // }
 
   onSelect(hero: Hero) {
     this.selectedHero = hero;

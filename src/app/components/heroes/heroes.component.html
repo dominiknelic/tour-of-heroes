@@ -1,4 +1,4 @@
-@if (selectedHero) {
+<!-- @if (selectedHero) {
   <h2>{{ selectedHero.name | uppercase }} Details</h2>
   <div><span>id: </span>{{ heroForm.get("id")?.value }}</div>
   <div [formGroup]="heroForm">
@@ -13,9 +13,10 @@
       <p>Name is required.</p>
     }
   </div>
-}
+} -->
 
 <h2>My Heroes</h2>
+
 <ul class="heroes">
   @for (hero of heroes; track hero.id) {
     <li>
@@ -30,3 +31,5 @@
     </li>
   }
 </ul>
+
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
