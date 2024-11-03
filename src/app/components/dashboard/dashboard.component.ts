@@ -1,11 +1,36 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { HEROES } from '../../mock-heroes';
+import { HeroService } from '../../services/hero.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
+  heroes = HEROES;
 
+  readonly destroyRef = inject(DestroyRef);
+
+  constructor(private readonly heroService: HeroService) {}
+
+  ngOnInit(): void {
+    this.getHeroes();
+  }
+
+  getHeroes() {
+    this.heroService
+      .getHeroes()
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((heroes) => {
+        this.heroes = heroes.slice(1, 5);
+      });
+  }
 }
