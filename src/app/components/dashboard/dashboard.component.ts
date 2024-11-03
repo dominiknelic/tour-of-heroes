@@ -5,7 +5,7 @@ import {
   inject,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { HEROES } from '../../mock-heroes';
+import { Hero } from '../../hero';
 import { HeroService } from '../../services/hero.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { HeroService } from '../../services/hero.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DashboardComponent {
-  heroes = HEROES;
+  heroes: Hero[] = [];
 
   readonly destroyRef = inject(DestroyRef);
 

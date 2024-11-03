@@ -1,6 +1,5 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   DestroyRef,
   inject,
@@ -8,14 +7,8 @@ import {
 } from '@angular/core';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Hero } from '../../hero';
-import { HEROES } from '../../mock-heroes';
 import { HeroService } from '../../services/hero.service';
 
 @Component({
@@ -26,8 +19,7 @@ import { HeroService } from '../../services/hero.service';
 })
 export class HeroesComponent implements OnInit {
   // heroForm: FormGroup;
-  heroes = HEROES;
-  selectedHero?: Hero;
+  heroes: Hero[] = [];
 
   readonly destroyRef = inject(DestroyRef);
 
@@ -56,9 +48,5 @@ export class HeroesComponent implements OnInit {
       .subscribe((heroes) => {
         this.heroes = heroes;
       });
-  }
-
-  onSelect(hero: Hero) {
-    this.selectedHero = hero;
   }
 }
