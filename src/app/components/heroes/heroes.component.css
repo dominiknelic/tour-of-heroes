@@ -14,7 +14,7 @@
   left: 0.1em;
 }
 
-.heroes a {
+.heroes div {
   color: #333;
   text-decoration: none;
   background-color: #eee;
@@ -26,12 +26,12 @@
   width: 100%;
 }
 
-.heroes a:hover {
+.heroes div:hover {
   color: #2c3a41;
   background-color: #e6e6e6;
 }
 
-.heroes a:active {
+.heroes div:active {
   background-color: #525252;
   color: #fafafa;
 }

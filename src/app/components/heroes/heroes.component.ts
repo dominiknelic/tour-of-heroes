@@ -20,6 +20,7 @@ import { HeroService } from '../../services/hero.service';
 export class HeroesComponent implements OnInit {
   // heroForm: FormGroup;
   heroes: Hero[] = [];
+  selectedHero?: Hero;
 
   readonly destroyRef = inject(DestroyRef);
 
@@ -48,5 +49,9 @@ export class HeroesComponent implements OnInit {
       .subscribe((heroes) => {
         this.heroes = heroes;
       });
+  }
+
+  onSelectHero(hero: Hero) {
+    return (this.selectedHero = hero);
   }
 }
