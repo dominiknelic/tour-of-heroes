@@ -56,6 +56,6 @@ describe('HeroDetailComponent', () => {
     fixture.detectChanges();
 
     const nameElement = fixture.debugElement.query(By.css('h2'));
-    expect(nameElement).toBeNull();
+    expect(nameElement.nativeElement.textContent.trim()).toBe('Enter the name');
   });
 });
