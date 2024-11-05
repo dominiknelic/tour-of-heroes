@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../../services/hero.service';
 import { Hero } from '../../hero';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
@@ -58,14 +59,17 @@ export class HeroDetailComponent implements OnInit {
   listenForNameChanges() {
     this.heroForm
       .get('name')
-      ?.valueChanges.pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((newName) => {
-        const updatedHero: Hero = {
-          ...this.heroForm.getRawValue(),
-          name: newName,
-        };
-        this.heroService.updateHero(updatedHero).subscribe();
-      });
+      ?.valueChanges.pipe(
+        takeUntilDestroyed(this.destroyRef),
+        switchMap((newName) => {
+          const updatedHero: Hero = {
+            ...this.heroForm.getRawValue(),
+            name: newName,
+          };
+          return this.heroService.updateHero(updatedHero);
+        }),
+      )
+      .subscribe();
   }
 
   goBack() {
