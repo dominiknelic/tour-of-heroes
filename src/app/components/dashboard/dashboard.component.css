@@ -2,6 +2,8 @@
 
 h2 {
   text-align: center;
+  font-size: x-large;
+  font-weight: bold;
 }
 
 .heroes-menu {
@@ -21,7 +23,7 @@ h2 {
 a {
   background-color: #3f525c;
   border-radius: 2px;
-  padding: 1rem;
+  padding: 4rem 1rem;
   font-size: 1.2rem;
   text-decoration: none;
   display: inline-block;

@@ -1,11 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HeroDetailComponent } from './hero-detail.component';
-import { HeroService } from '../../services/hero.service';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
-import { of } from 'rxjs';
-import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { HeroService } from '../../services/hero.service';
+import { HeroDetailComponent } from './hero-detail.component';
 
 const mockHeroService = {
   getHero: jest.fn(),
@@ -54,9 +53,9 @@ describe('HeroDetailComponent', () => {
     mockHeroService.getHero.mockReturnValue(of(undefined)); // Hero not found
     mockActivatedRoute.snapshot.paramMap.get.mockReturnValue('2');
 
-    fixture.detectChanges(); // Trigger ngOnInit
+    fixture.detectChanges();
 
     const nameElement = fixture.debugElement.query(By.css('h2'));
-    expect(nameElement).toBeNull(); // Check that hero details are not rendered
+    expect(nameElement).toBeNull();
   });
 });

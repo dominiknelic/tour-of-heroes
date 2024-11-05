@@ -1,18 +1,28 @@
 /* HeroDetailComponent's private CSS styles */
-label {
+.hero-details {
+  display: grid;
+  grid-template-columns: 100px 250px;
+  grid-row: auto auto;
+  grid-row-gap: 8px;
+  align-items: center;
+}
+
+label,
+.hero-id {
   color: #435960;
   font-weight: bold;
 }
 input {
   font-size: 1em;
   padding: 0.5rem;
+  font-weight: bold;
 }
 button {
   margin-top: 20px;
   background-color: #eee;
-  padding: 1rem;
+  padding: 8px 16px;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 16px;
 }
 button:hover {
   background-color: #cfd8dc;

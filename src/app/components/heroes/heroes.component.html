@@ -20,18 +20,21 @@
 <ul class="heroes">
   @for (hero of heroes; track hero.id) {
     <li>
-      <div (click)="onSelectHero(hero)">
+      <div
+        (click)="onSelectHero(hero)"
+        [ngClass]="{ active: selectedHero?.id === hero.id }"
+      >
         <span class="badge">{{ hero.id }}</span>
-        <span appHeroNameModifier [appHeroNameModifier]="hero.name">{{
-          hero.name
-        }}</span>
+        <span appHeroNameModifier [appHeroNameModifier]="hero.name">
+          {{ hero.name }}
+        </span>
       </div>
     </li>
   }
 </ul>
 
 @if (selectedHero) {
-  <div>{{ selectedHero.name | uppercase }} is my hero</div>
+  <h2>{{ selectedHero.name | uppercase }} is my hero</h2>
   <a routerLink="/detail/{{ selectedHero.id }}">
     <button type="button">View details</button>
   </a>
