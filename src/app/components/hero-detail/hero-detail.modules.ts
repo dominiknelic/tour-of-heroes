@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeroDetailComponent } from './hero-detail.component';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HeroDetailRoutingModule } from './hero-detail-routing.modules';
-import { FormsModule } from '@angular/forms';
+import { HeroDetailComponent } from './hero-detail.component';
 
 @NgModule({
   declarations: [HeroDetailComponent],
-  imports: [CommonModule, HeroDetailRoutingModule, FormsModule],
+  imports: [CommonModule, HeroDetailRoutingModule, ReactiveFormsModule],
 })
 export class HeroDetailModule {}

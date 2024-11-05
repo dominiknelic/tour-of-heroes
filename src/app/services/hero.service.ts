@@ -1,20 +1,27 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Hero } from '../hero';
 import { HEROES } from '../mock-heroes';
-import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HeroService {
-  constructor() {}
+  private heroesSubject = new BehaviorSubject<Hero[]>(HEROES);
 
   getHeroes(): Observable<Hero[]> {
-    return of(HEROES);
+    return this.heroesSubject.asObservable();
   }
 
-  getHero(id: number): Observable<Hero | undefined> {
-    const hero = HEROES.find((hero) => hero.id === id)!;
-    return of(hero);
+  getHero(id: number): Observable<Hero> {
+    return of(this.heroesSubject.value.find((hero) => hero.id === id) as Hero);
+  }
+
+  updateHero(updatedHero: Hero): Observable<void> {
+    const heroes = this.heroesSubject.value.map((hero) =>
+      hero.id === updatedHero.id ? updatedHero : hero,
+    );
+    this.heroesSubject.next(heroes);
+    return of(void 0);
   }
 }

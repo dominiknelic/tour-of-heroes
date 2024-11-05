@@ -1,12 +1,25 @@
-@if (hero) {
-  <h2>{{ hero.name }} details!</h2>
-  <div class="hero-details">
-    <span class="hero-id">id:</span>
-    <span>{{ hero.id }}</span>
+@if (heroForm) {
+  @if (heroForm.get("name")?.valid) {
+    <h2>{{ heroForm.get("name")?.value }} details!</h2>
+  } @else {
+    <h2>Enter the name</h2>
+  }
+  <form [formGroup]="heroForm">
+    <div class="hero-details">
+      <span class="hero-id">id:</span>
+      <span>{{ heroForm.get("id")?.value }}</span>
 
-    <label for="name">name:</label>
-    <input id="name" [(ngModel)]="hero.name" placeholder="name" />
-  </div>
+      <label for="name">name:</label>
+      <div>
+        <input id="name" formControlName="name" />
+        @if (heroForm.get("name")?.invalid && heroForm.get("name")?.touched) {
+          <small class="error"> This field is required </small>
+        }
+      </div>
+    </div>
+  </form>
 }
 
-<button type="button" (click)="goBack()">Back</button>
+<button type="button" (click)="goBack()" [disabled]="heroForm.invalid">
+  Back
+</button>

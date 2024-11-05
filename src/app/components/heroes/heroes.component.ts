@@ -18,7 +18,6 @@ import { HeroService } from '../../services/hero.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroesComponent implements OnInit {
-  // heroForm: FormGroup;
   heroes: Hero[] = [];
   selectedHero?: Hero;
 
@@ -27,16 +26,7 @@ export class HeroesComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly heroService: HeroService,
-  ) {
-    // this.heroForm = new FormGroup({
-    //   id: new FormControl<number>(1),
-    //   name: new FormControl<string>('Windstorm', [Validators.required]),
-    // });
-  }
-
-  // get name() {
-  //   return this.heroForm.get('name');
-  // }
+  ) {}
 
   ngOnInit(): void {
     this.getHeroes();
